@@ -1,0 +1,32 @@
+{
+  "name": "grammy-bot-template",
+  "version": "1.0.0",
+  "description": "Telegram bot template with grammy.js",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config build/index.js dotenv_config_path=./config.env",
+    "start": "node -r dotenv/config build/index.js dotenv_config_path=./config.env",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Aleksandr Gordeiko",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "grammy": "^1.6.2",
+    "mongoose": "^5.13.2",
+    "nodemon": "^2.0.7",
+    "typegram": "^3.7.0",
+    "typescript": "^4.3.4",
+    "@types/node": "^15.12.4",
+    "@types/mongoose": "^5.11.97",
+    "@typegoose/typegoose": "^7.6.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-typescript": "^0.14.0"
+  }
+}
