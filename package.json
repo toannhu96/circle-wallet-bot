@@ -4,29 +4,49 @@
   "description": "Telegram bot template with grammy.js",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -r dotenv/config build/index.js dotenv_config_path=./config.env",
-    "start": "node -r dotenv/config build/index.js dotenv_config_path=./config.env",
-    "build": "tsc"
+    "gen:model": "npx prisma generate",
+    "dev": "run-p build:watch start:watch",
+    "build": "swc src -d dist --copy-files",
+    "build:watch": "swc src -d dist --copy-files --watch",
+    "start": "dotenv -- node dist/src/index.js",
+    "start:watch": "dotenv -- nodemon dist/src/index.js"
   },
   "keywords": [],
   "author": "Aleksandr Gordeiko",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "grammy": "^1.6.2",
+    "@coral-xyz/anchor": "^0.29.0",
+    "@grammyjs/menu": "^1.2.2",
+    "@prisma/client": "^5.17.0",
+    "@project-serum/serum": "^0.13.65",
+    "@solana/spl-token": "^0.4.8",
+    "@solana/web3.js": "^1.95.1",
+    "@typegoose/typegoose": "^7.6.1",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^15.12.4",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "grammy": "^1.27.0",
     "mongoose": "^5.13.2",
-    "nodemon": "^2.0.7",
+    "node-forge": "^1.3.1",
+    "swc": "1.0.11",
     "typegram": "^3.7.0",
     "typescript": "^4.3.4",
-    "@types/node": "^15.12.4",
-    "@types/mongoose": "^5.11.97",
-    "@typegoose/typegoose": "^7.6.1"
+    "uuidv7": "^1.0.1"
   },
   "devDependencies": {
+    "@swc/cli": "^0.4.0",
+    "@swc/core": "^1.7.0",
+    "@swc/jest": "^0.2.36",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^7.29.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-typescript": "^0.14.0"
+    "eslint-plugin-typescript": "^0.14.0",
+    "nodemon": "^3.1.4",
+    "npm-run-all": "^4.1.5",
+    "prisma": "^5.17.0",
+    "ts-node": "^10.9.2"
   }
 }

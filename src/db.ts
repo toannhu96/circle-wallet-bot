@@ -1,27 +1,21 @@
-import { connect, connection } from 'mongoose';
+import { PrismaClient } from "@prisma/client";
 
-const url: string = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_NAME}`;
+export const prisma = new PrismaClient({
+  log: ["query", "info", "warn", "error"],
+});
 
-const connectDB = async (): Promise<void> => {
+export const connectDB = async (): Promise<void> => {
   try {
-    await connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    await prisma.$connect();
   } catch (err) {
     throw new Error(`DB connection error: ${err}`);
   }
 };
 
-const closeConnection = async (): Promise<void> => {
+export const closeConnection = async (): Promise<void> => {
   try {
-    await connection.close();
+    await prisma.$disconnect();
   } catch (err) {
-    throw new Error('DB connection closure fail');
+    throw new Error("DB connection closure fail");
   }
-};
-
-// Your db interaction functions here
-
-export {
-  connectDB,
-  closeConnection,
-  // Export your db interaction functions
 };
